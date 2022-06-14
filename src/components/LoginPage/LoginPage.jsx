@@ -26,7 +26,6 @@ export default function LoginPage() {
   const onFormSubmit = (ev) => {
     ev.preventDefault();
     if (data.find((el) => el.id === Number(userId))) {
-      // login succes
       dispatch(actions.loginUser);
     }
     console.log("hi");
