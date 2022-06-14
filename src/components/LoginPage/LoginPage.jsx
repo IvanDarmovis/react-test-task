@@ -1,20 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux";
-import { useGetUsersQuery } from "../../redux/api";
-import { actions } from "../../redux/reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers, logoutUser } from "../../redux/reducer";
 
 export default function LoginPage() {
   const [userId, setUserId] = useState("");
   const [date, setDate] = useState(null);
-  const { data, error, isFetching } = useGetUsersQuery();
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
+  let timerId = null;
+
+  useEffect(() => {
+    if (!isLoggedIn) clearTimeout(timerId);
+  }, [isLoggedIn, timerId]);
 
   const onDateChange = (date) => {
     if (date - Date.now() <= 0)
       return alert("Ви вибрали дату в минулому. Аяяй!");
-    console.log(date);
     setDate(date);
   };
 
@@ -25,12 +28,11 @@ export default function LoginPage() {
 
   const onFormSubmit = (ev) => {
     ev.preventDefault();
-    if (data.find((el) => el.id === Number(userId))) {
-      // login succes
-      dispatch(actions.loginUser);
-    }
-    console.log("hi");
-    console.log(data);
+    dispatch(getUsers(parseInt(userId)));
+    if (isLoggedIn)
+      timerId = setTimeout(() => {
+        dispatch(logoutUser());
+      }, date - Date.now());
     formReset();
   };
 

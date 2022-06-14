@@ -1,6 +1,9 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { logoutUser } from "../../redux/reducer";
 
 export default function UserMenu() {
+  const dispatch = useDispatch();
   return (
     <div>
       <Link to="/">Home</Link>
@@ -15,7 +18,9 @@ export default function UserMenu() {
         <button type="button">RU</button>
         <button type="button">EN</button>
       </div>
-      <button type="button">Log Out</button>
+      <button type="button" onClick={() => dispatch(logoutUser())}>
+        Log Out
+      </button>
     </div>
   );
 }
