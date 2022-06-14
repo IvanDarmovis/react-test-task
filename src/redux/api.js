@@ -7,10 +7,6 @@ export const serverApi = createApi({
   }),
   tagTypes: ["users", "photos", "posts"],
   endpoints: (builder) => ({
-    getUsers: builder.query({
-      query: () => "/users",
-      providesTags: ["users"]
-    }),
     getUserById: builder.query({
       query: (id) => `/users/${id}`,
       providesTags: ["users"]
