@@ -1,55 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../redux/reducer";
 import { Virtuoso } from "react-virtuoso";
-// import { debounce } from "debounce";
 import debounce from "lodash.debounce";
 import s from "./Posts.module.css";
 
 export default function Posts() {
   const [position, setPosition] = useState(0);
-  const [options, setOptions] = useState(0);
+  const [options, setOptions] = useState([]);
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const userId = useSelector((state) => state.currentUser.id);
+  const isFetching = useSelector((state) => state.isFetching);
 
-  console.log(options);
+  // console.log(options);
+  // console.log(position);
 
   useEffect(() => {
     dispatch(getPosts(position));
-  }, [dispatch, position]);
+  }, [position, dispatch]);
 
   useEffect(() => {
-    setOptions(posts.filter((el) => el.id !== userId));
-  }, [posts, userId]);
+    const data = posts.filter((el) => el.userId !== userId);
+    setOptions(data);
+    if (!isFetching && posts && data.length === 0) {
+      console.log(data.length);
+      setPosition(position + 10);
+    }
+  }, [isFetching, position, posts, userId]);
 
   return (
     <div>
       <p>Posts</p>
-      <Virtuoso
-        className={s.scrollContainer}
-        // onScroll={(e) => console.dir(e.target)}
-        totalCount={position}
-        atBottomStateChange={debounce(() => {
+      <ul>
+        {options &&
+          options.map((el) => (
+            <li key={[el.userId, el.id].join("-")}>
+              <h3>{el.title}</h3>
+              <p>{el.body}</p>
+            </li>
+          ))}
+      </ul>
+      <button
+        type="button"
+        onClick={() => {
           setPosition(position + 10);
-          console.log(position);
-        }, 1000)}
-        itemContent={() => (
-          <ul>
-            {options.map((el) => (
-              <li key={[el.id, el.userId].join("-")}>
-                <h3>{el.title}</h3>
-                <p>{el.body}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-        style={{
-          border: "5px dashed gray",
-          borderRadius: "4px",
-          height: "85vh"
+          // dispatch(getPosts(position));
         }}
-      />
+      >
+        Load more
+      </button>
     </div>
   );
 }
