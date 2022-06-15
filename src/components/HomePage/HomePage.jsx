@@ -12,7 +12,6 @@ export default function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(photos);
     dispatch(getPhotos(user.id));
   }, []);
 
