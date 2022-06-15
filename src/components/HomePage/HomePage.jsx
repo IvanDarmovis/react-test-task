@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../redux/reducer";
 import SliderGallery from "../services/Slider";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import s from "./HomePage.module.css";
 
 export default function HomePage() {
@@ -12,9 +10,8 @@ export default function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(photos);
     dispatch(getPhotos(user.id));
-  }, []);
+  }, [dispatch, user.id]);
 
   return (
     <div className={s.wrapper}>

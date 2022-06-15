@@ -5,6 +5,7 @@ const initialState = {
   currentUser: {},
   photos: [],
   users: [],
+  posts: [],
   isLoggedIn: false,
   isFetching: false
 };
@@ -31,6 +32,15 @@ const getPhotos = createAsyncThunk("user/getPhotos", async (id) => {
   } catch (error) {}
 });
 
+const getPosts = createAsyncThunk("user/getPosts", async (number = 0) => {
+  try {
+    const { data } = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts?\_start=${number}&\_limit=10`
+    );
+    return data;
+  } catch (error) {}
+});
+
 const slice = createSlice({
   name: "user",
   initialState,
@@ -38,6 +48,8 @@ const slice = createSlice({
     logoutUser: (state) => {
       state.currentUser = {};
       state.users = [];
+      state.photos = [];
+      state.posts = [];
       state.isLoggedIn = false;
       state.isFetching = false;
     }
@@ -48,17 +60,22 @@ const slice = createSlice({
     },
     [getUsers.fulfilled](state, action) {
       const { data, id } = action.payload;
-      if (!data) {
-        state.isFetching = false;
-        return;
-      }
+      state.isFetching = false;
+      if (!data) return;
       state.users = data;
       state.currentUser = data.find((el) => el.id === id);
       state.isLoggedIn = true;
-      state.isFetching = false;
     },
     [getPhotos.fulfilled](state, action) {
       state.photos = action.payload;
+    },
+    [getPosts.pending](state) {
+      state.isFetching = true;
+    },
+    [getPosts.fulfilled](state, action) {
+      state.isFetching = false;
+      if (!action.payload) return;
+      state.posts = [...state.posts, ...action.payload];
     }
   }
 });
@@ -66,4 +83,4 @@ const slice = createSlice({
 const { reducer } = slice;
 const { logoutUser } = slice.actions;
 
-export { reducer, getUsers, logoutUser, getPhotos };
+export { reducer, getUsers, logoutUser, getPhotos, getPosts };
