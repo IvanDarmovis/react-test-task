@@ -25,16 +25,13 @@ function App() {
           <Route path="/signin" element={<LoginPage />} />
         </Route>
         <Route element={<PrivatePath isLoggedIn={isLoggedIn} />}>
-          <Route path="/react-test-task/" element={<HomePage />} />
-          <Route path="/react-test-task/friends" element={<Friends />} />
-          <Route
-            path="/react-test-task/friends/:id"
-            element={<FriendsDetailed />}
-          />
-          <Route path="/react-test-task/photos" element={<Photos />} />
-          <Route path="/react-test-task/posts" element={<Posts />} />
-          <Route path="/react-test-task/posts/:id" element={<PostDetails />} />
-          <Route path="/react-test-task/author" element={<Author />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/friends/:id" element={<FriendsDetailed />} />
+          <Route path="/photos" element={<Photos />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/:id" element={<PostDetails />} />
+          <Route path="/author" element={<Author />} />
         </Route>
       </Routes>
       {isFetching && <Loader />}
