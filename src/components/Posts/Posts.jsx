@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../redux/reducer";
-import s from "./Posts.module.css";
+// import s from "./Posts.module.css";
 
 export default function Posts() {
   const [position, setPosition] = useState(0);
