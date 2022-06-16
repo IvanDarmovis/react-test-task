@@ -16,11 +16,22 @@ const getUsers = createAsyncThunk("users/getUsers", async (id) => {
     const { data } = await axios.get(
       "https://jsonplaceholder.typicode.com/users"
     );
-    if (data.find((el) => el.id === id)) return { data, id };
-    return alert("Немає користувача з таким ID");
+    if (data) return data;
+    throw new Error("Немає користувача з таким ID");
   } catch (error) {
-    alert("Повторіть спробу");
-    throw new Error();
+    alert(error);
+  }
+});
+
+const getUserById = createAsyncThunk("users/getUserById", async (id) => {
+  try {
+    const { data } = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${id}`
+    );
+    if (data) return data;
+    throw new Error("Немає користувача з таким ID");
+  } catch (error) {
+    alert(error);
   }
 });
 
@@ -59,15 +70,23 @@ const slice = createSlice({
     }
   },
   extraReducers: {
+    [getUserById.pending](state) {
+      state.isFetching = true;
+    },
+    [getUserById.fulfilled](state, action) {
+      state.isFetching = false;
+      if (!action.payload) return;
+      state.currentUser = action.payload;
+      state.isLoggedIn = true;
+    },
     [getUsers.pending](state) {
       state.isFetching = true;
     },
     [getUsers.fulfilled](state, action) {
-      const { data, id } = action.payload;
+      const id = state.currentUser.id;
       state.isFetching = false;
-      if (!data) return;
-      state.users = data;
-      state.currentUser = data.find((el) => el.id === id);
+      if (!action.payload) return;
+      state.users = action.payload.filter((el) => el.id !== id);
       state.isLoggedIn = true;
     },
     [getPhotos.fulfilled](state, action) {
@@ -87,4 +106,4 @@ const slice = createSlice({
 const { reducer } = slice;
 const { logoutUser } = slice.actions;
 
-export { reducer, getUsers, logoutUser, getPhotos, getPosts };
+export { reducer, getUsers, logoutUser, getPhotos, getPosts, getUserById };

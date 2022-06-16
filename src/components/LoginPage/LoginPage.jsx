@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, logoutUser } from "../../redux/reducer";
+import { getUserById, logoutUser } from "../../redux/reducer";
 
 export default function LoginPage() {
   const [userId, setUserId] = useState("");
@@ -28,7 +28,7 @@ export default function LoginPage() {
 
   const onFormSubmit = (ev) => {
     ev.preventDefault();
-    dispatch(getUsers(parseInt(userId)));
+    dispatch(getUserById(parseInt(userId)));
     if (isLoggedIn)
       timerId = setTimeout(() => {
         dispatch(logoutUser());

@@ -6,7 +6,6 @@ import s from "./Posts.module.css";
 export default function Posts() {
   const [position, setPosition] = useState(0);
   const [options, setOptions] = useState([]);
-  const [arr, setArr] = useState([]);
   const dispatch = useDispatch();
   const id = useSelector((state) => state.currentUser.id);
 
