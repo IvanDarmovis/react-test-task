@@ -46,7 +46,7 @@ const getPhotos = createAsyncThunk("user/getPhotos", async (id) => {
 const getPosts = createAsyncThunk("user/getPosts", async (number) => {
   try {
     const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts?\_start=${number}&\_limit=10`
+      `https://jsonplaceholder.typicode.com/posts?\_start=${number}&\_limit=10` // eslint-disable-line react-hooks/exhaustive-deps
     );
     if (!data.length) throw new Error("Більше нема!");
     return data;

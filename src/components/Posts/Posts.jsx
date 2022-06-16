@@ -22,7 +22,7 @@ export default function Posts() {
         ]);
     }
     fetch();
-  }, [dispatch, id, position]);
+  }, [dispatch, id, position]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>

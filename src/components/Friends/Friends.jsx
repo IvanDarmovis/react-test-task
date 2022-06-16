@@ -8,7 +8,7 @@ export default function Friends() {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   console.log(friends);
   return (
