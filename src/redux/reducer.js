@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useState } from "react";
 
 const initialState = {
   currentUser: {},
@@ -32,13 +33,16 @@ const getPhotos = createAsyncThunk("user/getPhotos", async (id) => {
   } catch (error) {}
 });
 
-const getPosts = createAsyncThunk("user/getPosts", async (number = 0) => {
+const getPosts = createAsyncThunk("user/getPosts", async (number) => {
   try {
     const { data } = await axios.get(
       `https://jsonplaceholder.typicode.com/posts?\_start=${number}&\_limit=10`
     );
+    if (!data.length) throw new Error("Більше нема!");
     return data;
-  } catch (error) {}
+  } catch (error) {
+    alert(error);
+  }
 });
 
 const slice = createSlice({

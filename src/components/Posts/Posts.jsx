@@ -1,34 +1,29 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../redux/reducer";
-import { Virtuoso } from "react-virtuoso";
-import debounce from "lodash.debounce";
 import s from "./Posts.module.css";
 
 export default function Posts() {
   const [position, setPosition] = useState(0);
   const [options, setOptions] = useState([]);
-  const [count, setCount] = useState(0);
+  const [arr, setArr] = useState([]);
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
-  const userId = useSelector((state) => state.currentUser.id);
-  const isFetching = useSelector((state) => state.isFetching);
-
-  // console.log(options);
-  // console.log(position);
+  const id = useSelector((state) => state.currentUser.id);
 
   useEffect(() => {
-    dispatch(getPosts(position));
-  }, [position, dispatch]);
-
-  useEffect(() => {
-    const data = posts.filter((el) => el.userId !== userId);
-    setOptions(data);
-    if (!isFetching && posts && data.length === 0) {
-      console.log(data.length);
-      setPosition(position + 10);
+    async function fetch() {
+      const originalPromiseResult = await dispatch(getPosts(position)).unwrap();
+      console.log(originalPromiseResult);
+      if (originalPromiseResult?.filter((el) => el.userId !== id).length === 0)
+        setPosition(position + 10);
+      else
+        setOptions([
+          ...options,
+          ...originalPromiseResult.filter((el) => el.userId !== id)
+        ]);
     }
-  }, [isFetching, position, posts, userId]);
+    fetch();
+  }, [dispatch, id, position]);
 
   return (
     <div>
@@ -42,13 +37,7 @@ export default function Posts() {
             </li>
           ))}
       </ul>
-      <button
-        type="button"
-        onClick={() => {
-          setPosition(position + 10);
-          // dispatch(getPosts(position));
-        }}
-      >
+      <button type="button" onClick={() => setPosition(position + 10)}>
         Load more
       </button>
     </div>
