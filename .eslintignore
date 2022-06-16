@@ -1,0 +1,3 @@
+{
+    "ignorePatterns": ["Post.jsx", "reducer.js"],
+}
