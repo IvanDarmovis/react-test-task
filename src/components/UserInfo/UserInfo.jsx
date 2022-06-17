@@ -30,59 +30,61 @@ export default function UserInfo({ id }) {
   if (!isFetching)
     return (
       <>
-        <div className={s.mainContainer}>
-          <div className={s.cardContainer}>
-            <h2>{t("userInfo.contactInfo")}</h2>
-            <ul>
-              <li>
-                {t("userInfo.name")}: {user.name}
-              </li>
-              <li>
-                {t("userInfo.phone")}: {user.phone}
-              </li>
-              <li>
-                {t("userInfo.email")}: {user.email}
-              </li>
-              <li>
-                {t("userInfo.username")}: {user.username}
-              </li>
-            </ul>
-            <a href="https://anastasia.net" target="_blanc">
-              {t("userInfo.personalWebsite")}
-            </a>
+        {user && (
+          <div className={s.mainContainer}>
+            <div className={s.cardContainer}>
+              <h2>{t("userInfo.contactInfo")}</h2>
+              <ul>
+                <li>
+                  {t("userInfo.name")}: {user.name}
+                </li>
+                <li>
+                  {t("userInfo.phone")}: {user.phone}
+                </li>
+                <li>
+                  {t("userInfo.email")}: {user.email}
+                </li>
+                <li>
+                  {t("userInfo.username")}: {user.username}
+                </li>
+              </ul>
+              <a href="https://anastasia.net" target="_blanc">
+                {t("userInfo.personalWebsite")}
+              </a>
+            </div>
+            <div className={s.cardContainer}>
+              <h2>{t("userInfo.address")}</h2>
+              <ul>
+                <li>
+                  {t("userInfo.city")}: {user.address.city}
+                </li>
+                <li>
+                  {t("userInfo.street")}: {user.address.street}
+                </li>
+                <li>
+                  {t("userInfo.suite")}: {user.address.suite}
+                </li>
+                <li>
+                  {t("userInfo.zipcode")}: {user.address.zipcode}
+                </li>
+              </ul>
+            </div>
+            <div className={s.cardContainer}>
+              <h2>{t("userInfo.company")}</h2>
+              <ul>
+                <li>
+                  {t("userInfo.companyName")}: {user.company.name}
+                </li>
+                <li>
+                  {t("userInfo.slogan")}: {user.company.catchPhrase}
+                </li>
+                <li>
+                  {t("userInfo.whatWeDo")}: {user.company.bs}
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className={s.cardContainer}>
-            <h2>{t("userInfo.address")}</h2>
-            <ul>
-              <li>
-                {t("userInfo.city")}: {user.address.city}
-              </li>
-              <li>
-                {t("userInfo.street")}: {user.address.street}
-              </li>
-              <li>
-                {t("userInfo.suite")}: {user.address.suite}
-              </li>
-              <li>
-                {t("userInfo.zipcode")}: {user.address.zipcode}
-              </li>
-            </ul>
-          </div>
-          <div className={s.cardContainer}>
-            <h2>{t("userInfo.company")}</h2>
-            <ul>
-              <li>
-                {t("userInfo.companyName")}: {user.company.name}
-              </li>
-              <li>
-                {t("userInfo.slogan")}: {user.company.catchPhrase}
-              </li>
-              <li>
-                {t("userInfo.whatWeDo")}: {user.company.bs}
-              </li>
-            </ul>
-          </div>
-        </div>
+        )}
         <SliderGallery library={photos} />
         <div className={s.postContainer}>
           {loggedId === user.id && <PostForm action={postPublishing} />}
