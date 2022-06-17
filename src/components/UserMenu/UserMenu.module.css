@@ -1,0 +1,19 @@
+.navContainer {
+  display: flex;
+  justify-content: space-around;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.navLink {
+  padding: 20px;
+  text-decoration: none;
+}
+
+.subNav > button {
+  border: none;
+  background-color: transparent;
+  padding: 15px;
+  vertical-align: baseline;
+  cursor: pointer;
+}

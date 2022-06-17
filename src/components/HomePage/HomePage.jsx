@@ -7,7 +7,6 @@ export default function HomePage() {
 
   return (
     <div className={s.wrapper}>
-      <h2>HomePage</h2>
       <UserInfo id={id} />
     </div>
   );

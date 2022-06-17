@@ -1,10 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser, setLang } from "../../redux/reducer";
 import { useTranslation } from "react-i18next";
 import { timerId } from "components/LoginPage/LoginPage";
 import { useEffect } from "react";
+import s from "./UserMenu.module.css";
 
 const lngs = {
   ua: { nativeName: "Ukrainian" },
@@ -19,18 +19,31 @@ export default function UserMenu() {
 
   useEffect(() => {
     i18n.changeLanguage(language);
-  }, [language]);
+  }, [i18n, language]);
 
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/signin">Sign In</Link>
-      <Link to="/friends">Friends</Link>
-      <Link to="/photos">Photos</Link>
-      <Link to="/posts">Posts</Link>
-      <Link to="/author">Author</Link>
-
-      <div>
+    <div className={s.navContainer}>
+      <div className={s.mainNav}>
+        <Link className={s.navLink} to="/">
+          {t("userMenu.home")}
+        </Link>
+        <Link className={s.navLink} to="/signin">
+          {t("userMenu.signIn")}
+        </Link>
+        <Link className={s.navLink} to="/friends">
+          {t("userMenu.friends")}
+        </Link>
+        <Link className={s.navLink} to="/photos">
+          {t("userMenu.photos")}
+        </Link>
+        <Link className={s.navLink} to="/posts">
+          {t("userMenu.posts")}
+        </Link>
+        <Link className={s.navLink} to="/author">
+          {t("userMenu.home")}
+        </Link>
+      </div>
+      <div className={s.subNav}>
         {Object.keys(lngs).map((lng) => (
           <button
             key={lng}
@@ -43,19 +56,19 @@ export default function UserMenu() {
               dispatch(setLang(lng));
             }}
           >
-            {lngs[lng].nativeName}
+            {t(`userMenu.${lng}`)}
           </button>
         ))}
+        <button
+          type="button"
+          onClick={() => {
+            dispatch(logoutUser());
+            clearInterval(timerId);
+          }}
+        >
+          {t("userMenu.logOut")}
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={() => {
-          dispatch(logoutUser());
-          clearInterval(timerId);
-        }}
-      >
-        Log Out
-      </button>
     </div>
   );
 }

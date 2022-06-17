@@ -45,7 +45,6 @@ export default function LoginPage() {
 
   return (
     <div>
-      <h2>{t("login.login")}</h2>
       <form onSubmit={onFormSubmit}>
         <label>
           {t("login.id")}

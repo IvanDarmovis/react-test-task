@@ -9,6 +9,7 @@ import {
   postCorrection,
   deletePost
 } from "redux/reducer";
+import { useTranslation } from "react-i18next";
 import s from "./PostDetails.module.css";
 
 export default function PostDetails() {
@@ -19,6 +20,7 @@ export default function PostDetails() {
   const isFetching = useSelector((state) => state.isFetching);
   const userId = useSelector((state) => state.currentUser.id);
   const [showModal, setShowModal] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getPostById(id));
@@ -41,7 +43,6 @@ export default function PostDetails() {
 
   return (
     <div>
-      <p>PostDetails</p>
       {!isFetching && (
         <div>
           <h3>{post.title}</h3>
@@ -49,15 +50,15 @@ export default function PostDetails() {
           {post.userId === userId && (
             <div>
               <button type="button" onClick={onCorrection}>
-                Редагувати
+                {t("postDetails.correct")}
               </button>
               <button type="button" onClick={onPostDelete}>
-                Видалити
+                {t("postDetails.delete")}
               </button>
             </div>
           )}
           <div>
-            <p>Comments:</p>
+            <p>{t("postDetails.comments")}:</p>
             <ul>
               {postComments &&
                 postComments.map((el) => (
@@ -84,7 +85,7 @@ export default function PostDetails() {
                   className={s.closeButton}
                   onClick={() => setShowModal(!showModal)}
                 >
-                  Закрити
+                  {t("postDetails.close")}
                 </button>
               </div>
             </Modal>

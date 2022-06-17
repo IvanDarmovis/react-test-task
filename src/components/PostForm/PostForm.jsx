@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import s from "./PostForm.module.css";
 
 export default function PostForm({
@@ -12,6 +13,7 @@ export default function PostForm({
   const dispatch = useDispatch();
   const [titleField, setTitleField] = useState(title);
   const [bodyField, setBodyField] = useState(body);
+  const { t } = useTranslation();
 
   const onFormSubmit = (ev) => {
     ev.preventDefault();
@@ -30,7 +32,7 @@ export default function PostForm({
   return (
     <form onSubmit={onFormSubmit} className={s.postForm}>
       <label>
-        <p>Назва статті</p>
+        <p>{t("postForm.title")}</p>
         <input
           className={s.title}
           type="text"
@@ -39,7 +41,7 @@ export default function PostForm({
         ></input>
       </label>
       <label>
-        <p>Текст статті</p>
+        <p>{t("postForm.body")}</p>
         <textarea
           className={s.body}
           type="text"
@@ -49,7 +51,7 @@ export default function PostForm({
         ></textarea>
       </label>
       <button type="submit" className={s.submitButton}>
-        Опублікувати
+        {t("postForm.button")}
       </button>
     </form>
   );

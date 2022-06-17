@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import SliderGallery from "components/services/Slider";
 import PostForm from "components/PostForm";
+import { useTranslation } from "react-i18next";
 import s from "./UserInfo.module.css";
 
 export default function UserInfo({ id }) {
@@ -18,6 +19,7 @@ export default function UserInfo({ id }) {
   const posts = useSelector((state) => state.userPosts);
   const isFetching = useSelector((state) => state.isFetching);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getUserById(id));
@@ -30,32 +32,54 @@ export default function UserInfo({ id }) {
       <>
         <div className={s.mainContainer}>
           <div className={s.cardContainer}>
-            <h2>Contact info:</h2>
+            <h2>{t("userInfo.contactInfo")}</h2>
             <ul>
-              <li>Name: {user.name}</li>
-              <li>Phone number: {user.phone}</li>
-              <li>Email: {user.email}</li>
-              <li>Username: {user.username}</li>
+              <li>
+                {t("userInfo.name")}: {user.name}
+              </li>
+              <li>
+                {t("userInfo.phone")}: {user.phone}
+              </li>
+              <li>
+                {t("userInfo.email")}: {user.email}
+              </li>
+              <li>
+                {t("userInfo.username")}: {user.username}
+              </li>
             </ul>
             <a href="https://anastasia.net" target="_blanc">
-              Personal website
+              {t("userInfo.personalWebsite")}
             </a>
           </div>
           <div className={s.cardContainer}>
-            <h2>Address</h2>
+            <h2>{t("userInfo.address")}</h2>
             <ul>
-              <li>City: {user.address.city}</li>
-              <li>Street: {user.address.street}</li>
-              <li>Suite: {user.address.suite}</li>
-              <li>Zipcode: {user.address.zipcode}</li>
+              <li>
+                {t("userInfo.city")}: {user.address.city}
+              </li>
+              <li>
+                {t("userInfo.street")}: {user.address.street}
+              </li>
+              <li>
+                {t("userInfo.suite")}: {user.address.suite}
+              </li>
+              <li>
+                {t("userInfo.zipcode")}: {user.address.zipcode}
+              </li>
             </ul>
           </div>
           <div className={s.cardContainer}>
-            <h2>Company</h2>
+            <h2>{t("userInfo.company")}</h2>
             <ul>
-              <li>Name: {user.company.name}</li>
-              <li>Slogan: {user.company.catchPhrase}</li>
-              <li>What we do: {user.company.bs}</li>
+              <li>
+                {t("userInfo.companyName")}: {user.company.name}
+              </li>
+              <li>
+                {t("userInfo.slogan")}: {user.company.catchPhrase}
+              </li>
+              <li>
+                {t("userInfo.whatWeDo")}: {user.company.bs}
+              </li>
             </ul>
           </div>
         </div>
@@ -67,7 +91,9 @@ export default function UserInfo({ id }) {
               posts.map((el) => (
                 <li key={el.id} className={s.post}>
                   <h3>{el.title}</h3>
-                  <Link to={`/posts/${el.id}`}>Read</Link>
+                  <Link className={s.postLink} to={`/posts/${el.id}`}>
+                    {t("userInfo.read")}
+                  </Link>
                 </li>
               ))}
           </ul>

@@ -18,7 +18,6 @@ export default function Photos() {
 
   return (
     <div>
-      <p>Photos</p>
       <ul>
         {photos.map((el) => (
           <li key={el.id}>

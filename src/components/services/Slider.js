@@ -30,7 +30,6 @@ export default function SliderGallery({ library = [] }) {
   };
   return (
     <div>
-      <h2>Gallery</h2>
       <Slider {...settings}>
         {library?.map((el) => (
           <div key={el.id} className={s.sliderCard}>
