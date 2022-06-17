@@ -1,0 +1,19 @@
+.friendsList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.friendsCard {
+  min-width: 30%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 15px 5px #a0a0a0;
+}
+
+.friendsCard > p {
+  margin: 0;
+  margin-bottom: 5px;
+}

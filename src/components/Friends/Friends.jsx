@@ -1,19 +1,35 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { getUsers } from "../../redux/reducer";
+import s from "./Friends.module.css";
 
 export default function Friends() {
   const friends = useSelector((state) => state.users);
+  const isFetching = useSelector((state) => state.isFetching);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUsers());
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  console.log(friends);
+  }, [dispatch]);
   return (
     <div>
       <p>Friends</p>
+      <ul className={s.friendsList}>
+        {!isFetching &&
+          friends?.map((el) => (
+            <li key={el.id} className={s.friendsCard}>
+              <h3>{el.name}</h3>
+              <p>
+                Phone: <a href={`tel:${el.phone}`}>{el.phone}</a>
+              </p>
+              <p>
+                Email: <a href={`mailto:${el.email}`}>{el.email}</a>
+              </p>
+              <Link to={`/friends/${el.id}`}>Більше інформації</Link>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }

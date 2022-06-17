@@ -8,17 +8,17 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
 import { store, persistor } from "./redux/store";
+import "./i18n";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter basename="/react-test-task/">
-        {/* <BrowserRouter> */}
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {/* <BrowserRouter basename="/react-test-task/"> */}
         <App />
-      </BrowserRouter>
-    </PersistGate>
-  </Provider>
-  // </React.StrictMode>
+        {/* </BrowserRouter> */}
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );

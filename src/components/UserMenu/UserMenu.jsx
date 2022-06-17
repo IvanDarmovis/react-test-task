@@ -1,9 +1,26 @@
-import { useDispatch } from "react-redux";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { logoutUser } from "../../redux/reducer";
+import { logoutUser, setLang } from "../../redux/reducer";
+import { useTranslation } from "react-i18next";
+import { timerId } from "components/LoginPage/LoginPage";
+import { useEffect } from "react";
+
+const lngs = {
+  ua: { nativeName: "Ukrainian" },
+  en: { nativeName: "English" },
+  ru: { nativeName: "Russian" }
+};
 
 export default function UserMenu() {
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
+  const language = useSelector((state) => state.lang);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
+
   return (
     <div>
       <Link to="/">Home</Link>
@@ -14,11 +31,29 @@ export default function UserMenu() {
       <Link to="/author">Author</Link>
 
       <div>
-        <button type="button">UA</button>
-        <button type="button">RU</button>
-        <button type="button">EN</button>
+        {Object.keys(lngs).map((lng) => (
+          <button
+            key={lng}
+            style={{
+              fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal"
+            }}
+            type="submit"
+            onClick={() => {
+              i18n.changeLanguage(lng);
+              dispatch(setLang(lng));
+            }}
+          >
+            {lngs[lng].nativeName}
+          </button>
+        ))}
       </div>
-      <button type="button" onClick={() => dispatch(logoutUser())}>
+      <button
+        type="button"
+        onClick={() => {
+          dispatch(logoutUser());
+          clearInterval(timerId);
+        }}
+      >
         Log Out
       </button>
     </div>
