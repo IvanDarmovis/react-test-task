@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Modal from "components/services/Popup";
+import s from "./Photos.module.css";
 
 export default function Photos() {
   const photos = useSelector((state) => state.photos);
@@ -18,9 +19,9 @@ export default function Photos() {
 
   return (
     <div>
-      <ul>
+      <ul className={s.gallery}>
         {photos.map((el) => (
-          <li key={el.id}>
+          <li key={el.id} className={s.galleryCard}>
             <img src={el.thumbnailUrl} onClick={onImgClick} alt={el.url} />
             <p>{el.title}</p>
           </li>
@@ -28,7 +29,7 @@ export default function Photos() {
       </ul>
       {showModal && (
         <Modal onClose={toogleModal}>
-          <img src={src} alt="" width="600" />
+          <img src={src} alt="" width="600" className={s.modalImg} />
         </Modal>
       )}
     </div>

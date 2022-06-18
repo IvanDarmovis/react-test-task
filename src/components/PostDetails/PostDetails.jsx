@@ -46,9 +46,9 @@ export default function PostDetails() {
       {!isFetching && (
         <div>
           <h3>{post.title}</h3>
-          <p>{post.body}</p>
+          <p className={s.body}>{post.body}</p>
           {post.userId === userId && (
-            <div>
+            <div className={s.manadgeButtons}>
               <button type="button" onClick={onCorrection}>
                 {t("postDetails.correct")}
               </button>
@@ -57,15 +57,17 @@ export default function PostDetails() {
               </button>
             </div>
           )}
-          <div>
+          <div className={s.commentsSection}>
             <p>{t("postDetails.comments")}:</p>
-            <ul>
+            <ul className={s.commentsList}>
               {postComments &&
                 postComments.map((el) => (
-                  <li key={el.id}>
+                  <li key={el.id} className={s.comment}>
                     <h4>{el.name}</h4>
                     <p>{el.body}</p>
-                    <a href={`mailto:${el.email}`}>{el.email}</a>
+                    <a href={`mailto:${el.email}`} className={s.mailLink}>
+                      {el.email}
+                    </a>
                   </li>
                 ))}
             </ul>

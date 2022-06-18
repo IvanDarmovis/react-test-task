@@ -1,0 +1,43 @@
+.inputField {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 200px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 5px #a0a0a0;
+}
+
+.inputDate {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 200px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 5px #a0a0a0;
+}
+
+.labelText {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.date {
+  display: block;
+  margin: 0 auto;
+}
+
+.popper {
+  left: 50%;
+}
+
+.wrapper {
+  width: 200px;
+}
+
+.loginButton {
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+}

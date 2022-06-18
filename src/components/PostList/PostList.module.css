@@ -1,0 +1,32 @@
+.postList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 2rem;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.post > h3 {
+  text-align: left;
+  max-width: 70%;
+  margin: 0;
+}
+
+.postLink {
+  text-decoration: none;
+  padding: 10px 0;
+}
+
+.postLink:not(:last-child) {
+  margin-right: 20px;
+}
+
+.buttonWrapper {
+  margin-left: 40px;
+}

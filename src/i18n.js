@@ -42,11 +42,10 @@ i18n.use(initReactI18next).init({
           company: "Місце роботи",
           companyName: "Компанія",
           slogan: "Гасло",
-          whatWeDo: "Наша мета",
-          read: "Детальніше"
+          whatWeDo: "Наша мета"
         },
         posts: {
-          aboutAuthor: "Детальніше про автора",
+          aboutAuthor: "Про автора",
           readPost: "Прочитати статтю",
           loadMore: "Більше статей"
         },
@@ -102,8 +101,7 @@ i18n.use(initReactI18next).init({
           company: "Company",
           companyName: "Name",
           slogan: "Slogan",
-          whatWeDo: "What we do",
-          read: "Read more"
+          whatWeDo: "What we do"
         },
         posts: {
           aboutAuthor: "About author",
@@ -162,8 +160,7 @@ i18n.use(initReactI18next).init({
           company: "Место роботы",
           companyName: "Название компании",
           slogan: "Лозунг",
-          whatWeDo: "Наша цель",
-          read: "Детальнее"
+          whatWeDo: "Наша цель"
         },
         posts: {
           aboutAuthor: "Про автора",

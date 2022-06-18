@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById, logoutUser } from "../../redux/reducer";
 import { useTranslation } from "react-i18next";
+import s from "./LoginPage.module.css";
 
 export let timerId = null;
 
@@ -24,7 +25,6 @@ export default function LoginPage() {
       return alert("Ви вибрали дату в минулому. Аяяй!");
     setDate(date);
     timerId = setInterval(() => {
-      console.log(date - Date.now());
       if (date - Date.now() <= 0) {
         dispatch(logoutUser());
         clearInterval(timerId);
@@ -47,16 +47,19 @@ export default function LoginPage() {
     <div>
       <form onSubmit={onFormSubmit}>
         <label>
-          {t("login.id")}
+          <p className={s.labelText}>{t("login.id")}</p>
           <input
+            className={s.inputField}
             type="text"
             value={userId}
             onChange={(ev) => setUserId(ev.currentTarget.value)}
             required
           />
         </label>
-        <p>{t("login.date")}</p>
+        <p className={s.labelText}>{t("login.date")}</p>
         <DatePicker
+          wrapperClassName={s.wrapper}
+          className={s.inputDate}
           selected={date}
           onChange={onDateChange}
           showTimeSelect
@@ -66,7 +69,9 @@ export default function LoginPage() {
           required
         />
 
-        <button type="submit">{t("login.login")}</button>
+        <button type="submit" className={s.loginButton}>
+          {t("login.login")}
+        </button>
       </form>
     </div>
   );

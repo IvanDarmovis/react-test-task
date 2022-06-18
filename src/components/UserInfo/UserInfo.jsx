@@ -6,9 +6,9 @@ import {
   getUserById,
   postPublishing
 } from "redux/reducer";
-import { Link } from "react-router-dom";
 import SliderGallery from "components/services/Slider";
 import PostForm from "components/PostForm";
+import PostList from "components/PostList";
 import { useTranslation } from "react-i18next";
 import s from "./UserInfo.module.css";
 
@@ -88,17 +88,7 @@ export default function UserInfo({ id }) {
         <SliderGallery library={photos} />
         <div className={s.postContainer}>
           {loggedId === user.id && <PostForm action={postPublishing} />}
-          <ul className={s.postList}>
-            {posts &&
-              posts.map((el) => (
-                <li key={el.id} className={s.post}>
-                  <h3>{el.title}</h3>
-                  <Link className={s.postLink} to={`/posts/${el.id}`}>
-                    {t("userInfo.read")}
-                  </Link>
-                </li>
-              ))}
-          </ul>
+          <PostList posts={posts} />
         </div>
       </>
     );
