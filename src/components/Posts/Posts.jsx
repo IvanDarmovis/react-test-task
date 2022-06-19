@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { getPosts } from "../../redux/reducer";
 import PostList from "components/PostList";
 import { useTranslation } from "react-i18next";
-// import s from "./Posts.module.css";
 
 export default function Posts() {
   const [position, setPosition] = useState(0);

@@ -22,7 +22,7 @@ const getUsers = createAsyncThunk("users/getUsers", async () => {
       "https://jsonplaceholder.typicode.com/users"
     );
     if (data) return data;
-    throw new Error("Немає користувача з таким ID");
+    throw new Error("Дані відсутні");
   } catch (error) {
     alert(error);
   }
@@ -36,7 +36,7 @@ const getUserById = createAsyncThunk("users/getUserById", async (id) => {
     if (data) return data;
     throw new Error("Немає користувача з таким ID");
   } catch (error) {
-    alert(error);
+    alert("Немає користувача з таким ID");
   }
 });
 
@@ -194,7 +194,8 @@ const slice = createSlice({
     [getPosts.pending](state) {
       state.isFetching = true;
     },
-    [getPosts.fulfilled](state) {
+    [getPosts.fulfilled](state, action) {
+      state.posts = [...state.posts, action.payload];
       state.isFetching = false;
     },
     [getPostsByUserId.fulfilled](state, action) {

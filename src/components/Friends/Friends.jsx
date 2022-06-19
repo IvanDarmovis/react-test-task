@@ -28,7 +28,7 @@ export default function Friends() {
                 {t("friends.email")}:{" "}
                 <a href={`mailto:${el.email}`}>{el.email}</a>
               </p>
-              <Link to={`/friends/${el.id}`}>{t("friends.more")}</Link>
+              <Link to={`../friends/${el.id}`}>{t("friends.more")}</Link>
             </li>
           ))}
       </ul>

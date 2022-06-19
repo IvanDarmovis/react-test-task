@@ -16,11 +16,11 @@ export default function PostList({ posts }) {
             <h3>{el.title}</h3>
             <div className={s.buttonWrapper}>
               {loggedId !== el.userId && parseInt(id) !== el.userId && (
-                <Link className={s.postLink} to={`/friends/${el.userId}`}>
+                <Link className={s.postLink} to={`../friends/${el.userId}`}>
                   {t("posts.aboutAuthor")}
                 </Link>
               )}
-              <Link className={s.postLink} to={`/posts/${el.id}`}>
+              <Link className={s.postLink} to={`../posts/${el.id}`}>
                 {t("posts.readPost")}
               </Link>
             </div>

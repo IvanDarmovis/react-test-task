@@ -18,6 +18,7 @@ export default function UserInfo({ id }) {
   const photos = useSelector((state) => state.photos);
   const posts = useSelector((state) => state.userPosts);
   const isFetching = useSelector((state) => state.isFetching);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -27,7 +28,7 @@ export default function UserInfo({ id }) {
     dispatch(getPostsByUserId(id));
   }, [dispatch, id]);
 
-  if (!isFetching)
+  if (!isFetching && isLoggedIn)
     return (
       <>
         {user && (
