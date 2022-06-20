@@ -5,7 +5,7 @@ import {
   getPostsByUserId,
   getUserById,
   postPublishing
-} from "redux/reducer";
+} from "redux/apiActions";
 import SliderGallery from "components/Slider";
 import PostForm from "components/PostForm";
 import PostList from "components/PostList";

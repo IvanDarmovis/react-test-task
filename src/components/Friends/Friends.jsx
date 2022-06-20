@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUsers } from "../../redux/reducer";
+import { getUsers } from "../../redux/apiActions";
 import { useTranslation } from "react-i18next";
 import s from "./Friends.module.css";
 

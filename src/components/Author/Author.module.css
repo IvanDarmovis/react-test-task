@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.cvContainer {
+  width: 1200px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
+  text-align: left;
+}
+
+.cvContainer h3 {
+  text-transform: uppercase;
+}
+
+.side {
+  width: 320px;
+  background-color: #c9d3c9;
+  height: inherit;
+  padding-bottom: 40px;
+}
+
+.photo {
+  display: block;
+  width: 320px;
+  height: 320px;
+}
+
+.sidePart {
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.sidePart > h3 {
+  margin-bottom: 10px;
+}
+
+.contactsList,
+.languageList {
+  list-style: none;
+}
+
+.contactsList > li:not(:last-child),
+.languageList > li:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.contactsList a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.skillsList {
+  margin-left: 20px;
+}
+
+.skillsList > li {
+  margin-bottom: 5px;
+}
+
+.mainContent {
+  padding-bottom: 40px;
+}
+
+.mainContent > section {
+  margin-top: 30px;
+}
+
+.header {
+  background-color: #18232f;
+  color: #fff;
+  height: 320px;
+  padding-top: 40px;
+}
+
+.textContainer {
+  margin-left: 30px;
+  width: 550px;
+}
+
+.name {
+  font-size: 28;
+  font-weight: 700;
+}
+
+.position {
+  font-size: 15;
+  margin-top: 20px;
+}
+
+.summaryTitle {
+  font-size: 10;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.summary {
+  font-size: 10;
+  margin-top: 20px;
+}
+
+.projectsList {
+  list-style: none;
+}
+
+.projectsList > li {
+  margin-top: 5px;
+}
+
+.projectLink {
+  color: inherit;
+  font-weight: 700;
+}
+
+.repoLink {
+  color: inherit;
+}
+
+.companyList {
+  list-style: none;
+}
+
+.companyList > li {
+  margin-top: 10px;
+}
+
+.companyList h4 {
+  margin-bottom: 10px;
+}
+
+.describeList {
+  margin: 5px 0px 10px 20px;
+  list-style-type: disc;
+}
+
+.educationList {
+  list-style: none;
+}
+
+.educationList > li {
+  margin-top: 10px;
+}

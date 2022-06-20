@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../../redux/reducer";
+import { getPosts } from "redux/apiActions";
 import PostList from "components/PostList";
 import { useTranslation } from "react-i18next";
 import { useRef } from "react";

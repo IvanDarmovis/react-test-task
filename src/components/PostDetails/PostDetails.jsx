@@ -8,7 +8,7 @@ import {
   getPostComments,
   postCorrection,
   deletePost
-} from "redux/reducer";
+} from "redux/apiActions";
 import { useTranslation } from "react-i18next";
 import s from "./PostDetails.module.css";
 

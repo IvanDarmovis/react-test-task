@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserById, logoutUser } from "../../redux/reducer";
+import { logoutUser } from "../../redux/reducer";
+import { getUserById } from "../../redux/apiActions";
 import { useTranslation } from "react-i18next";
 import s from "./LoginPage.module.css";
 
