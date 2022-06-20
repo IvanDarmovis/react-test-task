@@ -23,7 +23,7 @@ export default function LangSwitcher() {
     if (path[1] === "en" || path[1] === "ru") {
       onClickLink(path[1]);
     } else onClickLink("ua");
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onClickLink = async (lng) => {
     if (i18n.language === lng) return;
