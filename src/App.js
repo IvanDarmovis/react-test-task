@@ -13,21 +13,44 @@ import LangSwitcher from "components/LangSwitcher";
 import { PrivatePath, OnlyPublicPath } from "./components/services/redirect";
 import { useSelector } from "react-redux";
 import "./App.css";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const isFetching = useSelector((state) => state.isFetching);
+  const lang = useSelector((state) => state.lang);
+  const [path, setPath] = useState("");
+
+  useEffect(() => {
+    if (lang === "") setPath("/");
+    else setPath(":lang");
+  }, [lang]);
 
   return (
     <div className="App">
       <div>
         <UserMenu />
         <Routes>
-          <Route path={`:lang`} element={<LangSwitcher />}>
-            <Route element={<OnlyPublicPath isLoggedIn={isLoggedIn} />}>
+          <Route path={path} element={<LangSwitcher />}>
+            <Route
+              element={
+                <OnlyPublicPath
+                  isLoggedIn={isLoggedIn}
+                  redirectPath={`/${lang}/`}
+                />
+              }
+            >
               <Route path="signin" element={<LoginPage />} />
             </Route>
-            <Route element={<PrivatePath isLoggedIn={isLoggedIn} />}>
+            <Route
+              element={
+                <PrivatePath
+                  isLoggedIn={isLoggedIn}
+                  redirectPath={`/${lang}/signin`}
+                />
+              }
+            >
               <Route index element={<HomePage />} />
               <Route path="friends" element={<Friends />} />
               <Route path="friends/:id" element={<FriendsDetailed />} />

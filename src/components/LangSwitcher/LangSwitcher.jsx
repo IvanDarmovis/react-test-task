@@ -16,13 +16,25 @@ export default function LangSwitcher() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const onClickLink = async (ev, lng) => {
+  const onClickLink = async (lng) => {
+    if (i18n.language === lng) return;
     i18n.changeLanguage(lng);
     const arr = location.pathname.split("/");
-    arr[1] = lng;
-    const p = arr.join("/");
-    dispatch(setLang(lng));
-    navigate(p, { replace: true });
+    let p = "";
+    if (lng === "en" || lng === "ru") {
+      if (arr[1] === "en" || arr[1] === "ru") arr[1] = lng;
+      else arr.splice(1, 0, lng);
+      dispatch(setLang(lng));
+      p = arr.join("/");
+      setTimeout(() => {
+        navigate(p, { replace: true });
+      }, 0);
+    } else {
+      if (arr.length > 2) arr.splice(1, 1);
+      dispatch(setLang(""));
+      p = arr.join("/");
+      navigate(p, { replace: true });
+    }
   };
 
   return (
@@ -34,7 +46,7 @@ export default function LangSwitcher() {
             style={{
               fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal"
             }}
-            onClick={(ev) => onClickLink(ev, lng)}
+            onClick={() => onClickLink(lng)}
           >
             {t(`userMenu.${lng}`)}
           </button>

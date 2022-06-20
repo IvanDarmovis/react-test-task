@@ -1,15 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
-import i18n from "i18n";
 
-const PrivatePath = ({
-  isLoggedIn,
-  redirectPath = `/${i18n.language}/signin`
-}) => {
+const PrivatePath = ({ isLoggedIn, redirectPath }) => {
   if (!isLoggedIn) return <Navigate to={redirectPath} replace />;
   return <Outlet />;
 };
 
-const OnlyPublicPath = ({ isLoggedIn, redirectPath = `/${i18n.language}` }) => {
+const OnlyPublicPath = ({ isLoggedIn, redirectPath }) => {
   if (isLoggedIn) return <Navigate to={redirectPath} replace />;
   return <Outlet />;
 };
