@@ -4,6 +4,7 @@ import { getPosts } from "redux/apiActions";
 import PostList from "components/PostList";
 import { useTranslation } from "react-i18next";
 import { useRef } from "react";
+import s from "./Posts.module.css";
 
 export default function Posts() {
   const [options, setOptions] = useState([]);
@@ -22,7 +23,11 @@ export default function Posts() {
   return (
     <div>
       <PostList posts={options} />
-      <button type="button" onClick={() => dispatch(getPosts(options.length))}>
+      <button
+        className={s.loadMoreButton}
+        type="button"
+        onClick={() => dispatch(getPosts(options.length))}
+      >
         {t("posts.loadMore")}
       </button>
     </div>

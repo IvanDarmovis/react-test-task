@@ -43,5 +43,9 @@
   display: block;
   margin: 0 auto;
   margin-top: 20px;
-  width: 100px;
+  font-size: 18px;
+  padding: 5px;
+  border-color: aquamarine;
+  outline-color: aquamarine;
+  border-radius: 10px;
 }

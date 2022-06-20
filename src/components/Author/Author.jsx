@@ -10,20 +10,15 @@ export default function Author() {
       <main className={s.mainContent}>
         <header className={s.header}>
           <div className={s.textContainer}>
-            <h1 className={s.name}>Ivan Darmovis</h1>
-            <h2 className={s.position}>Junior Front-End developer</h2>
-            <h3 className={s.summaryTitle}>Summary</h3>
-            <p className={s.summary}>
-              I am a Junior Fron-End developer. I focus on HTML5, CSS3, JS. I am
-              currently studding React and Node.js. I consider the development
-              necessary to facilitate routine tasks, which will allow us to
-              focus on more serious tasks.
-            </p>
+            <h1 className={s.name}>{t("author.name")}</h1>
+            <h2 className={s.position}>{t("author.position")}</h2>
+            <h3 className={s.summaryTitle}>{t("author.summaryTitle")}</h3>
+            <p className={s.summary}>{t("author.summary")}</p>
           </div>
         </header>
         <section>
           <div className={s.textContainer}>
-            <h3>Projects</h3>
+            <h3>{t("author.projects.section")}</h3>
             <ul className={s.projectsList}>
               <li>
                 <a
@@ -39,8 +34,8 @@ export default function Author() {
                 >
                   repo
                 </a>
-                )<p>Ice Cream company site (landing).</p>
-                <p>Responsible design. Used Parcel, SCSS, JS, HTML.</p>
+                )<p>{t("author.projects.first.title")}</p>
+                <p>{t("author.projects.first.text")}</p>
               </li>
               <li>
                 <a
@@ -56,64 +51,51 @@ export default function Author() {
                 >
                   repo
                 </a>
-                )
-                <p>
-                  Site for searching movies with ability to create own film
-                  library.
-                </p>
-                <p>Responsible design. Used SCSS, HTML, JS, Parcel.</p>
+                )<p>{t("author.projects.second.title")}</p>
+                <p>{t("author.projects.second.text")}</p>
               </li>
             </ul>
           </div>
         </section>
         <section>
           <div className={s.textContainer}>
-            <h3>Work experience</h3>
+            <h3>{t("author.experience.section")}</h3>
             <ul className={s.companyList}>
               <li>
-                <h4>Customer support | 2021 - present</h4>
-                <p>Responsibilities:</p>
+                <h4>{t("author.experience.first.title")}</h4>
+                <p>{t("author.experience.title.resp")}</p>
                 <ul className={s.describeList}>
+                  <li>{t("author.experience.first.responsibilities.first")}</li>
                   <li>
-                    Chat with customers, help them to solve their problems and
-                    unswer for their questions.
+                    {t("author.experience.first.responsibilities.second")}
                   </li>
-                  <li>Сorrespondence with clients</li>
-                  <li>Monitoring complience with the rules of the site.</li>
+                  <li>{t("author.experience.first.responsibilities.third")}</li>
                 </ul>
-                <p>Achievement:</p>
+                <p>{t("author.experience.title.achivs")}</p>
                 <ul className={s.describeList}>
-                  <li>Learn and can perform all work processes.</li>
-                  <li>Took the position of deputy senior shift.</li>
+                  <li>{t("author.experience.first.achievement.first")}</li>
+                  <li>{t("author.experience.first.achievement.second")}</li>
                 </ul>
               </li>
               <li>
-                <h4>
-                  Technical drawing engineer Kromberg & Shubert Ukraine | 2016 -
-                  2018
-                </h4>
-                <p>Responsibilities:</p>
+                <h4>{t("author.experience.second.title")}</h4>
+                <p>{t("author.experience.title.resp")}</p>
                 <ul className={s.describeList}>
-                  <li>Create and support technical drawing.</li>
                   <li>
-                    Implement changes in the drawing and on the production.
+                    {t("author.experience.second.responsibilities.first")}
                   </li>
                   <li>
-                    Chang the drawing to prevent and correct errors and
-                    mistaces.
+                    {t("author.experience.second.responsibilities.second")}
                   </li>
-                  <li>Support production.</li>
+                  <li>
+                    {t("author.experience.second.responsibilities.third")}
+                  </li>
+                  <li>{t("author.experience.second.responsibilities.four")}</li>
                 </ul>
-                <p>Achievement:</p>
+                <p>{t("author.experience.title.achivs")}</p>
                 <ul className={s.describeList}>
-                  <li>
-                    Minimize amount of mistaces on the hurnesses of two projects
-                    and succeful launching one of them;
-                  </li>
-                  <li>
-                    Successful cooperation with quality team for decreasing some
-                    big problem on the projects.
-                  </li>
+                  <li>{t("author.experience.second.achievement.first")}</li>
+                  <li>{t("author.experience.second.achievement.second")}</li>
                 </ul>
               </li>
             </ul>
@@ -121,15 +103,15 @@ export default function Author() {
         </section>
         <section>
           <div className={s.textContainer}>
-            <h3>Education</h3>
+            <h3>{t("author.education.section")}</h3>
             <ul className={s.educationList}>
               <li>
-                <h4>Lutsk National Technical University | 2012 - 2015</h4>
-                <p>Specialist | Computer Systems and Networks</p>
+                <h4>{t("author.education.first.place")}</h4>
+                <p>{t("author.education.first.branch")}</p>
               </li>
               <li>
-                <h4>IT School GoIT | 2021 - 2022</h4>
-                <p>Full stack developer | JS + React</p>
+                <h4>{t("author.education.second.place")}</h4>
+                <p>{t("author.education.second.branch")}</p>
               </li>
             </ul>
           </div>
@@ -138,7 +120,7 @@ export default function Author() {
       <aside className={s.side}>
         <img src={photo} alt="" className={s.photo} />
         <div className={s.sidePart}>
-          <h3>Contact information</h3>
+          <h3>{t("author.contacts.title")}</h3>
           <ul className={s.contactsList}>
             <li>
               <a href="tel:+380683829387">+38 (068) 38-29-387</a>
@@ -156,11 +138,11 @@ export default function Author() {
             <li>
               <a href="https://github.com/IvanDarmovis">Github</a>
             </li>
-            <li>Lutsk, Ukraine</li>
+            <li>{t("author.contacts.coordination")}</li>
           </ul>
         </div>
         <div className={s.sidePart}>
-          <h3>Tech skills</h3>
+          <h3>{t("author.skills.tech.title")}</h3>
           <ul className={s.skillsList}>
             <li>HTML5</li>
             <li>CSS3</li>
@@ -173,22 +155,22 @@ export default function Author() {
           </ul>
         </div>
         <div className={s.sidePart}>
-          <h3>Soft skills</h3>
+          <h3>{t("author.skills.soft.title")}</h3>
           <ul className={s.skillsList}>
-            <li>Adaptability</li>
-            <li>Calmness</li>
-            <li>Logical reasoning</li>
-            <li>Teamwork</li>
-            <li>Tolerance</li>
-            <li>Work Ethic</li>
+            <li>{t("author.skills.soft.first")}</li>
+            <li>{t("author.skills.soft.second")}</li>
+            <li>{t("author.skills.soft.third")}</li>
+            <li>{t("author.skills.soft.fourth")}</li>
+            <li>{t("author.skills.soft.fifth")}</li>
+            <li>{t("author.skills.soft.sixth")}</li>
           </ul>
         </div>
         <div className={s.sidePart}>
-          <h3>Language skills</h3>
+          <h3>{t("author.languages.title")}</h3>
           <ul className={s.languageList}>
-            <li>Ukrainian - native</li>
-            <li>English - intermediate</li>
-            <li>Russian - fluent</li>
+            <li>{t("author.languages.ukr")}</li>
+            <li>{t("author.languages.eng")}</li>
+            <li>{t("author.languages.rus")}</li>
           </ul>
         </div>
       </aside>
