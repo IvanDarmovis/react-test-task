@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import Modal from "components/services/Popup";
+import Modal from "components/Popup";
 import PostForm from "components/PostForm";
 import {
   getPostById,

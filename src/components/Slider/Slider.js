@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "./Popup";
+import Modal from "../Popup";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

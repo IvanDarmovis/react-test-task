@@ -6,7 +6,7 @@ import {
   getUserById,
   postPublishing
 } from "redux/reducer";
-import SliderGallery from "components/services/Slider";
+import SliderGallery from "components/Slider";
 import PostForm from "components/PostForm";
 import PostList from "components/PostList";
 import { useTranslation } from "react-i18next";

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import Modal from "components/services/Popup";
+import Modal from "components/Popup";
 import s from "./Photos.module.css";
 
 export default function Photos() {

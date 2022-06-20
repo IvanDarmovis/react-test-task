@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { setLang } from "../../redux/reducer";
 import s from "./LangSwitcher.module.css";
+import { useEffect } from "react";
 
 const lngs = {
   ua: { nativeName: "Ukrainian" },
@@ -15,6 +16,14 @@ export default function LangSwitcher() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const path = location.pathname.split("/");
+    console.log(path);
+    if (path[1] === "en" || path[1] === "ru") {
+      onClickLink(path[1]);
+    } else onClickLink("ua");
+  }, []);
 
   const onClickLink = async (lng) => {
     if (i18n.language === lng) return;
