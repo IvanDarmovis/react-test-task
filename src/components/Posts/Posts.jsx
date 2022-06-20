@@ -1,27 +1,28 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../redux/reducer";
 import PostList from "components/PostList";
 import { useTranslation } from "react-i18next";
+import { useRef } from "react";
 
 export default function Posts() {
-  const [position, setPosition] = useState(0);
   const [options, setOptions] = useState([]);
+  const posts = useSelector((state) => state.posts);
+  const firstCall = useRef(true);
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   useEffect(() => {
-    async function fetch() {
-      const originalPromiseResult = await dispatch(getPosts(position)).unwrap();
-      setOptions([...options, ...originalPromiseResult]);
-    }
-    fetch();
-  }, [position]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (posts.length === 0 && firstCall.current) {
+      dispatch(getPosts(0));
+      firstCall.current = false;
+    } else setOptions(posts);
+  }, [dispatch, posts]);
 
   return (
     <div>
       <PostList posts={options} />
-      <button type="button" onClick={() => setPosition(position + 10)}>
+      <button type="button" onClick={() => dispatch(getPosts(options.length))}>
         {t("posts.loadMore")}
       </button>
     </div>

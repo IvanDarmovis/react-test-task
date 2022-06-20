@@ -195,7 +195,7 @@ const slice = createSlice({
       state.isFetching = true;
     },
     [getPosts.fulfilled](state, action) {
-      state.posts = [...state.posts, action.payload];
+      state.posts = [...state.posts, ...action.payload];
       state.isFetching = false;
     },
     [getPostsByUserId.fulfilled](state, action) {
