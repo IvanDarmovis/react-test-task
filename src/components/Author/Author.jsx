@@ -1,7 +1,10 @@
 import s from "./Author.module.css";
 import photo from "./photo.jpg";
+import { useTranslation } from "react-i18next";
 
 export default function Author() {
+  const { t } = useTranslation();
+
   return (
     <div className={s.cvContainer}>
       <main className={s.mainContent}>
@@ -37,7 +40,7 @@ export default function Author() {
                   repo
                 </a>
                 )<p>Ice Cream company site (landing).</p>
-                <p>Responisble design. Used Parcel, SCSS, JS, HTML.</p>
+                <p>Responsible design. Used Parcel, SCSS, JS, HTML.</p>
               </li>
               <li>
                 <a
@@ -53,8 +56,12 @@ export default function Author() {
                 >
                   repo
                 </a>
-                )<p>Ice Cream company site (landing).</p>
-                <p>Responisble design. Used Parcel, SCSS, JS, HTML.</p>
+                )
+                <p>
+                  Site for searching movies with ability to create own film
+                  library.
+                </p>
+                <p>Responsible design. Used SCSS, HTML, JS, Parcel.</p>
               </li>
             </ul>
           </div>
@@ -181,6 +188,7 @@ export default function Author() {
           <ul className={s.languageList}>
             <li>Ukrainian - native</li>
             <li>English - intermediate</li>
+            <li>Russian - fluent</li>
           </ul>
         </div>
       </aside>

@@ -24,7 +24,7 @@ export default function PostForm({
         body: bodyField
       })
     );
-    onSubmit();
+    onSubmit && onSubmit();
     setTitleField("");
     setBodyField("");
   };
