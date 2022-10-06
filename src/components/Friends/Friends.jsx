@@ -56,7 +56,7 @@ export default function Friends() {
       </ul>
       <iframe
         title='cross-domain'
-        src='http://localhost:3000/iframe.html'
+        src='http://localhost:3000'
         id='example-iframe'
         frameborder='0'
       ></iframe>
